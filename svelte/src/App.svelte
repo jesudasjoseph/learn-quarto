@@ -1,22 +1,10 @@
 <script>
-	import router from "page";
-
-	import Test from './components/Test.svelte';
-	import Tests from './components/Tests.svelte';
-	import _404 from './components/404.svelte';
-
-	let page;
-
-	router('/', () => page = Test);
-	router('/t', () => page = Tests);
-	router('*', () => page = _404);
-
-	router.start();
-
+	import Game from './components/Game.svelte';
 </script>
 
 <main>
-	<svelte:component this={page} />
+	<h1>Play some Quarto!</h1>
+	<svelte:component this={Game} />
 </main>
 
 <style lang="scss">
@@ -36,8 +24,8 @@
 	h1 {
 		color: $primary;
 		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
+		font-size: 3em;
+		font-weight: 200;
 	}
 
 	@media (min-width: 640px) {
