@@ -15,19 +15,20 @@
 </div>
 
 <style lang="scss">
+	@import '../partials/_variables.scss';
+
 	#container {
 		display: grid;
-		width: 20vw;
-		height: 20vw;
 		grid-template-columns: 1fr 1fr 1fr 1fr;
 		grid-template-rows: 1fr 1fr 1fr 1fr;
-		column-gap: 3px;
-		row-gap: 3px;
+		column-gap: 2px;
+		row-gap: 2px;
 	}
 	#slot {
 		display: block;
-		width: 100%;
-		height: 100%;
+		width: $slot-size;
+		height: $slot-size;
+		border: solid 2px darken(grey, 15%);
 		background-color: grey;
 		border-radius: 4px;
 	}

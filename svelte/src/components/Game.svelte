@@ -1,5 +1,6 @@
 <script>
 	import { GAME_PIECES, INITIAL_GAME_STATE } from '../constants.js';
+	import { mouseX, mouseY } from '../stores.js';
 	import Palette from './Palette.svelte';
 	import Board from './Board.svelte';
 	
@@ -17,6 +18,9 @@
 		<Palette pieces={gameState.darkPieces} />
 	</div>
 </div>
+
+{ $mouseX }
+{ $mouseY }
 
 <style lang="scss">
 	#container {

@@ -26,8 +26,8 @@
 		display: grid;
 		justify-items: center;
 		align-items: center;
-		width: 60px;
-		height: 60px;
+		width: $slot-size;
+		height: $slot-size;
 		border: solid 2px black;
 		border-radius: 4px;
 		background-color: $text-dark;

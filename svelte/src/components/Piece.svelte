@@ -1,19 +1,63 @@
 <script>
+	import { slide } from 'svelte/transition';
 	import { GAME_PIECES } from '../constants.js';
+	import { mouseX, mouseY } from '../stores.js';
 
 	export let pieceID;
 
 	const pieceData = GAME_PIECES[pieceID];
 	const styleClasses = pieceData ? `${pieceData.light ? 'light' : 'dark'} ${pieceData.tall ? 'tall' : 'short'} ${pieceData.round ? 'round' : 'square'} ${pieceData.hollow ? 'hollow' : 'solid'}` : ' ';
+
+	let isSelected = true;
+
+	function drag(node) {
+		let moving = false;
+
+		node.addEventListener('mousedown', () => {
+			moving = true;
+			node.style.cursor = 'none';
+		});
+
+		window.addEventListener('mousemove', (e) => {
+			if (moving) {
+				node.style.cursor = 'none';
+				node.style.position = 'fixed';
+				node.style.transform = 'translate(-50%, -50%) scale(1.2)';
+				node.style.top = `${$mouseY}px`;
+				node.style.left = `${$mouseX}px`;
+			}
+		});
+		
+		window.addEventListener('mouseup', () => {
+			moving = false;
+			node.style.cursor = 'pointer';
+			node.style.position = 'static';
+			node.style.transform = '';
+		});
+
+		window.addEventListener('touchend', () => {
+			moving = false;
+			node.style.cursor = 'pointer';
+			node.style.position = 'static';
+			node.style.transform = '';
+		});
+	}
+
 </script>
 
-<div draggable="true" class={styleClasses} />
+<div use:drag transition:slide class={styleClasses} />
 
 <style lang="scss">
 	@import '../partials/_variables.scss';
 
 	div {
 		cursor: pointer;
+		width: $piece-t-size;
+		height: $piece-t-size;
+
+		&:active {
+			transform: scale(1.2);
+		}
 	}
 
 	.light {
@@ -24,22 +68,11 @@
 	}
 
 	.tall {
-		width: 45px;
-		height: 45px;
-
-		&:active {
-			width: 50px;
-			height: 50px;
-		}
+		
 	}
 	.short {
-		width: 35px;
-		height: 35px;
-
-		&:active {
-			width: 40px;
-			height: 40px;
-		}
+		width: $piece-s-size;
+		height: $piece-s-size;
 	}
 
 	.round {
@@ -52,11 +85,11 @@
 	.hollow {
 		&.light {
 			background-color: $light-shadow;
-			box-shadow: inset 6px 6px 6px $light, inset -6px -6px 6px $light, inset 6px -6px 6px $light, inset -6px 6px 6px $light;
+			box-shadow: inset 4px 4px 4px $light, inset -4px -4px 4px $light, inset 4px -4px 4px $light, inset -4px 4px 4px $light;
 		}
 		&.dark {
 			background-color: $dark-shadow;
-			box-shadow: inset 6px 6px 6px $dark, inset -6px -6px 6px $dark, inset 6px -6px 6px $dark, inset -6px 6px 6px $dark;
+			box-shadow: inset 4px 4px 4px $dark, inset -4px -4px 4px $dark, inset 4px -4px 4px $dark, inset -4px 4px 4px $dark;
 		}
 	}
 	.solid {
