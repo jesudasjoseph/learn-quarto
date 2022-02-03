@@ -1,8 +1,14 @@
 <script>
 	import Game from './components/Game.svelte';
+	import { mouseX, mouseY } from './stores.js';
+
+	function setMouseXY(event) {
+		mouseX.set(event.clientX);
+		mouseY.set(event.clientY);
+	}
 </script>
 
-<main>
+<main on:mousemove={setMouseXY}>
 	<h1>Play some Quarto!</h1>
 	<svelte:component this={Game} />
 </main>
