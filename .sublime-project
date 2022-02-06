@@ -1,0 +1,21 @@
+{
+	"folders":
+	[
+		{
+			"path": ".",
+		},
+		{
+			"path": "svelte",
+		},
+		{
+			"path": ".git"
+		},
+	],
+    "build_systems":
+    [
+        {
+            "name": "Svelte Dev",
+            "shell_cmd": "npm --prefix ./svelte run dev"
+        }
+    ]
+}
