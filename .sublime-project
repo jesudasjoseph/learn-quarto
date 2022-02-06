@@ -4,12 +4,6 @@
 		{
 			"path": ".",
 		},
-		{
-			"path": "svelte",
-		},
-		{
-			"path": ".git"
-		},
 	],
     "build_systems":
     [
